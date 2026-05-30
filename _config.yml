@@ -1,0 +1,69 @@
+#######################################################################################
+# Jupyter Book configuration
+# Sargent, Macroeconomic Theory, 2nd ed. (1987) — Chapter XI: Time Series
+# Modernized and extended edition
+#######################################################################################
+
+title: "Linear Time Series Analysis"
+author: "Thomas J. Sargent"
+copyright: "2026"
+logo: ""
+
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - colon_fence
+    - deflist
+    - html_admonition
+
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    mathjax3_config:
+      tex:
+        tags: "ams"
+        macros:
+          "abs":           ["\\left| #1 \\right|", 1]
+          "xt":            "x_t"
+          "yt":            "y_t"
+          "zt":            "z_t"
+          "ut":            "u_t"
+          "etat":          "\\eta_t"
+          "epsilont":      "\\epsilon_t"
+          "epsilontmone":  "\\epsilon_{t-1}"
+          "xtmone":        "x_{t-1}"
+          "xtmk":          "x_{t-k}"
+          "djepsilon":     "\\sum_{j=0}^{\\infty} d_j \\epsilon_{t-j}"
+          "djepsilonk":    "\\sum_{j=k}^{\\infty} d_j \\epsilon_{t-j}"
+          "sumjinf":       "\\sum_{j=0}^{\\infty}"
+          "sumjoneinf":    "\\sum_{j=1}^{\\infty}"
+          "sumiinf":       "\\sum_{i=0}^{\\infty}"
+          "sumjn":         "\\sum_{j=0}^{n}"
+          "sumjm":         "\\sum_{j=0}^{m}"
+          "sumjonem":      "\\sum_{j=1}^{m}"
+          "xtmonetwoinf":  "\\{x_{t-1}, x_{t-2}, \\ldots\\}"
+          "xtmoneinf":     "\\{x_t, x_{t-1}, \\ldots\\}"
+          "Pxt":           "P[x_t \\mid x_{t-1}, x_{t-2}, \\ldots]"
+          "Pxtn":          "P[x_t \\mid x_{t-1}, x_{t-2}, \\ldots, x_{t-n}]"
+          "dL":            "d(L)"
+          "dLj":           "\\sum_{j=0}^{\\infty} d_j L^j"
+          "onembL":        "1 - \\beta L"
+          "oneaL":         "1 + aL"
+          "ctau":          "c(\\tau)"
+          "gxyz":          "g_{xy}(z)"
+          "gyxz":          "g_{yx}(z)"
+          "gxz":           "g_x(z)"
+          "gyz":           "g_y(z)"
+          "dz":            "d(z)"
+          "dmz":           "d(z^{-1})"
+          "dzmz":          "d(z)\\,d(z^{-1})"
+          "sigmaepsilontwo": "\\sigma_{\\epsilon}^2"
+          "sigmautwo":     "\\sigma_u^2"
+          "sigmaetatwo":   "\\sigma_{\\eta}^2"
+          "abslambdaj":    "\\left|\\lambda_j\\right|"

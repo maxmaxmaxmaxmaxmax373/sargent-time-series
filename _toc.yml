@@ -1,0 +1,43 @@
+format: jb-book
+root: intro
+
+parts:
+  - caption: "Chapter XI: Linear Time Series"
+    chapters:
+      - file: chapters/01_introduction
+      - file: chapters/02_preliminary_concepts
+      - file: chapters/03_cross_covariogram
+      - file: chapters/04_fourier_z_transforms
+      - file: chapters/05_inverse_z_transform
+      - file: chapters/06_spectrum
+      - file: chapters/07_cross_spectrum
+      - file: chapters/08_leading_indicators
+      - file: chapters/09_slutsky_kuznets
+      - file: chapters/10_filter_kit
+      - file: chapters/11_business_cycle_definitions
+      - file: chapters/12_index_models
+      - file: chapters/13_representation_theory
+      - file: chapters/14_linear_prediction
+      - file: chapters/15_prediction_examples
+      - file: chapters/16_deriving_ma
+      - file: chapters/17_wold_ma
+      - file: chapters/18_wold_arma
+      - file: chapters/19_signal_extraction
+      - file: chapters/20_geometric_leads
+      - file: chapters/21_chain_rule
+      - file: chapters/22_rational_expectations
+      - file: chapters/23_vector_sde
+      - file: chapters/24_compact_notation
+      - file: chapters/25_optimal_prediction
+      - file: chapters/26_optimal_filtering
+      - file: chapters/27_granger_causality
+      - file: chapters/28_sims_money_income
+      - file: chapters/29_multivariate_prediction
+      - file: chapters/30_filtering_projections
+      - file: chapters/31_orthogonality_filtering
+      - file: chapters/32_one_sided_projections
+      - file: chapters/33_seasonal_adjustment
+      - file: chapters/34_aggregation
+      - file: chapters/35_errors_variables
+      - file: chapters/36_bubbles
+      - file: chapters/37_exercises
