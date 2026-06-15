@@ -154,6 +154,12 @@ for i, (name, disp, spec, use_log) in enumerate(variables):
     axR.set_xticklabels(XL)
     axR.set_xlim(0, np.pi)
     axR.grid(True, alpha=0.3)
+    if i == 0:                       # label the seasonal periods once, at the top
+        ytop = axR.get_ylim()[1]
+        axR.text(np.pi / 2, ytop, "4Q", ha="center", va="top",
+                 fontsize=8, color="0.4")
+        axR.text(np.pi, ytop, "2Q", ha="right", va="top",
+                 fontsize=8, color="0.4")
 
     if i == 0:
         axL.annotate("Variable", xy=(0.5, 1.28), xycoords="axes fraction",
@@ -163,7 +169,7 @@ for i, (name, disp, spec, use_log) in enumerate(variables):
                      fontweight="bold")
     if i == nvar - 1:
         axL.set_xlabel("year")
-        axR.set_xlabel(r"frequency  $\omega$")
+        axR.set_xlabel(r"frequency  $\omega$  (period $= 2\pi/\omega$ quarters)")
 
 fig.suptitle("Figure 5 — Seven U.S. quarterly series, 1947–present, "
              "with log estimated spectra", fontsize=13, fontweight="bold",
