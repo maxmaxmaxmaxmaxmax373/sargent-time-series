@@ -23,13 +23,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from m2_seasonal import (load_log_m2, fit_ar, ar_spectrum, P_AR,
+from m2_seasonal import (load_dlog_m2, fit_ar, ar_spectrum, P_AR,
                          SEASONAL_PERIODS)
 
 FIG_DIR = Path(__file__).resolve().parent.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
-sa, nsa = load_log_m2()
+sa, nsa = load_dlog_m2()
 a_sa, s2_sa = fit_ar(sa)
 a_nsa, s2_nsa = fit_ar(nsa)
 
@@ -64,7 +64,8 @@ ax.text(2 * np.pi / 12, ymax, "  seasonal harmonics: 12, 6, 4, 3, 2.4, 2 months"
         fontsize=8, color="0.4", va="bottom", ha="left")
 
 ax.set_title(f"Figure 8 — AR({P_AR}) spectral densities of seasonally adjusted "
-             "and unadjusted M2, 1959–present", fontsize=12, fontweight="bold")
+             "and unadjusted M2 growth, 1959–present", fontsize=12,
+             fontweight="bold")
 ax.legend(loc="upper right", frameon=False)
 ax.grid(True, alpha=0.25)
 

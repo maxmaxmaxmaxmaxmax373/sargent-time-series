@@ -19,11 +19,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from m2_seasonal import load_log_m2, fit_ar, lead_filter, LAMBDA
+from m2_seasonal import load_dlog_m2, fit_ar, lead_filter, LAMBDA
 
 FIG_DIR = Path(__file__).resolve().parent.parent / "figures"
 
-sa, nsa = load_log_m2()
+sa, nsa = load_dlog_m2()
 b_sa = lead_filter(fit_ar(sa)[0])
 b_nsa = lead_filter(fit_ar(nsa)[0])
 lags = np.arange(len(b_sa))                       # 0 .. 17
@@ -42,7 +42,7 @@ ax.annotate("seasonal lag 12", xy=(12, 0), xytext=(12.3, 0.6 * ax.get_ylim()[1])
 ax.set_xticks(lags)
 ax.set_xlabel("lag")
 ax.set_ylabel("filter coefficient $b_j$")
-ax.set_title(r"Figure 10 — Geometric-lead forecast filters $b(L)$ for M2 "
+ax.set_title(r"Figure 10 — Geometric-lead forecast filters $b(L)$ for M2 growth "
              rf"($\lambda={LAMBDA}$), 1959–present",
              fontsize=12, fontweight="bold")
 ax.legend(frameon=False)

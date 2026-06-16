@@ -23,12 +23,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from m2_seasonal import (load_log_m2, fit_ar, lead_filter, transfer, LAMBDA,
+from m2_seasonal import (load_dlog_m2, fit_ar, lead_filter, transfer, LAMBDA,
                          SEASONAL_PERIODS)
 
 FIG_DIR = Path(__file__).resolve().parent.parent / "figures"
 
-sa, nsa = load_log_m2()
+sa, nsa = load_dlog_m2()
 a_sa, _ = fit_ar(sa)
 a_nsa, _ = fit_ar(nsa)
 b_sa, b_nsa = lead_filter(a_sa), lead_filter(a_nsa)
@@ -45,10 +45,10 @@ def make(focus, fname, fig_no):
     """focus = 'nsa' or 'sa'."""
     if focus == "nsa":
         hf, ho = h_nsa, h_sa
-        flab, olab, title = "unadjusted (NSA)", "adjusted (SA)", "unadjusted M2"
+        flab, olab, title = "unadjusted (NSA)", "adjusted (SA)", "unadjusted M2 growth"
     else:
         hf, ho = h_sa, h_nsa
-        flab, olab, title = "adjusted (SA)", "unadjusted (NSA)", "adjusted M2"
+        flab, olab, title = "adjusted (SA)", "unadjusted (NSA)", "adjusted M2 growth"
 
     fig, (axA, axP) = plt.subplots(2, 1, figsize=(9, 7), sharex=True)
 

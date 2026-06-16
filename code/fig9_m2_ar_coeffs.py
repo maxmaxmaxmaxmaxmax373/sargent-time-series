@@ -16,11 +16,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from m2_seasonal import load_log_m2, fit_ar, P_AR
+from m2_seasonal import load_dlog_m2, fit_ar, P_AR
 
 FIG_DIR = Path(__file__).resolve().parent.parent / "figures"
 
-sa, nsa = load_log_m2()
+sa, nsa = load_dlog_m2()
 a_sa, _ = fit_ar(sa)
 a_nsa, _ = fit_ar(nsa)
 lags = np.arange(1, P_AR + 1)
@@ -34,14 +34,15 @@ ax.bar(lags - w / 2, a_nsa, width=w, color="C1", label="Unadjusted (NSA)")
 ax.bar(lags + w / 2, a_sa, width=w, color="C0", label="Adjusted (SA)")
 ax.axhline(0, color="black", lw=0.6)
 ax.axvline(12, color="0.6", ls=":", lw=1)
-ax.annotate("seasonal lag 12", xy=(12, ax.get_ylim()[1]), xytext=(12.4, 0.9),
+ymax = ax.get_ylim()[1]
+ax.annotate("seasonal lag 12", xy=(12, ymax), xytext=(12.4, 0.8 * ymax),
             fontsize=9, color="0.4")
 
 ax.set_xticks(lags)
 ax.set_xlabel("lag")
 ax.set_ylabel("autoregressive coefficient $a_k$")
 ax.set_title(f"Figure 9 — AR({P_AR}) coefficients of seasonally adjusted and "
-             "unadjusted M2, 1959–present", fontsize=12, fontweight="bold")
+             "unadjusted M2 growth, 1959–present", fontsize=12, fontweight="bold")
 ax.legend(frameon=False)
 ax.grid(True, axis="y", alpha=0.25)
 

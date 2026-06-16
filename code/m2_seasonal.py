@@ -50,6 +50,19 @@ def load_log_m2():
     return df["sa"].to_numpy(float), df["nsa"].to_numpy(float)
 
 
+def load_dlog_m2():
+    """Aligned monthly M2 growth, Delta log M2: (SA, NSA).
+
+    Log M2 is very close to a random walk (the level AR(18) has sum of
+    coefficients ~ 0.9998, i.e. a near-unit root). Fitting the AR to the
+    *growth* rate removes that dominant low-frequency pole, so the seasonal
+    structure -- the point of these figures -- is visible in the spectra and,
+    especially, in the transfer functions (Figures 11-12).
+    """
+    sa, nsa = load_log_m2()
+    return np.diff(sa) * 100.0, np.diff(nsa) * 100.0      # percent per month
+
+
 def fit_ar(x, p=P_AR):
     """OLS AR(p) with intercept. Returns (a_1..a_p, sigma^2)."""
     x = np.asarray(x, float)
