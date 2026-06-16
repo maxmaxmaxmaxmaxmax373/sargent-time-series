@@ -42,3 +42,7 @@ parts:
       - file: chapters/36_bubbles
       - file: chapters/37_exercises
       - file: chapters/38_exercise_solutions
+  - caption: "A Nonlinear Postscript"
+    chapters:
+      - file: chapters/39_nonlinear_representation
+      - file: chapters/40_nonlinear_lab
