@@ -1,5 +1,12 @@
 # Exercises
 
+```{note}
+Worked solutions are collected in the next chapter,
+[Solutions to Exercises](38_exercise_solutions.md).
+```
+
+(ex-1)=
+
 **1.** (Sims's approximation error formula.) Let $(y_t,x_t)$ be jointly covariance stationary with means of zero. Let the projection of $y_t$ on the $x$ process be
 
 $$
@@ -54,6 +61,8 @@ $$
 
 ---
 
+(ex-2)=
+
 **2.** ("Optimal" seasonal adjustment via signal extraction.) Suppose that an analyst is interested in estimating $x_t$ but only observes $X_t = x_t + u_t$, where $Ex_tu_t = 0$ for all $t$ and $s$, and where $x_t$ and $u_t$ are both covariance stationary stochastic processes with means of zero and known (to the analyst) covariance generating functions $g_x(z)$ and $g_u(z)$ respectively; $g_u(e^{-i\omega}) > 0$ for all $\omega$, but has most of its power concentrated at seasonal frequencies. The analyst estimates $x_t$ by the projection
 
 $$
@@ -69,6 +78,8 @@ B. Prove that $g_{\hat{x}}(e^{-i\omega}) < g_x(e^{-i\omega})$ for all $\omega$.
 C. Prove that if $g_x(e^{-i\omega})$ is relatively smooth across the seasonal and nonseasonal frequencies, then since $g_u(e^{-i\omega})$ has big peaks at the seasonal frequencies, it follows that $g_{\hat{x}}(e^{-i\omega})$ will have substantial dips at the seasonal frequencies.
 
 ---
+
+(ex-3)=
 
 **3.** Let $x_t$ be any covariance stationary stochastic process with $Ex_t = 0$.
 
@@ -88,6 +99,8 @@ D. Does $\theta_t=\eta_t$ where $\eta_t$ is the object in Wold's theorem?
 
 ---
 
+(ex-4)=
+
 **4.** Consider the "explosive" first-order Markov process $y_t = Ay_{t-1} + \epsilon_t$, $t= 1,2,\ldots$, $A>1$, where $\epsilon_t$ is white noise with mean zero and variance $\sigma_\epsilon^2$, and $y_0$ is given.
 
 A. Prove that for each realization $(\epsilon_1,\epsilon_2,\ldots)$ the $y_t$ process has the representation
@@ -102,6 +115,8 @@ B. Is the $u_t$ process "fundamental" for $y_t$?
 
 ---
 
+(ex-5)=
+
 **5.** Consider the univariate first-order mixed moving average, autoregressive process $z_t = \lambda z_{t-1}+ a_t - \beta a_{t-1}$ where $a_t$ is a fundamental white noise for $z$ and $0 < \beta < 1$, $0 < \lambda < 1$.
 
 A. Write the process in the form {eq}`eq-104`. (*Hint*: try $x_t = (z_t,a_t)'$ and $\epsilon_t = (a_t, a_t)'$.)
@@ -109,6 +124,8 @@ A. Write the process in the form {eq}`eq-104`. (*Hint*: try $x_t = (z_t,a_t)'$ a
 B. Use formula {eq}`eq-108` to derive a formula for $P[z_{t+2}|z_t,z_{t-1},\ldots]$. Verify that this answer agrees with the result of applying the Wiener-Kolmogorov formula {eq}`eq-62`.
 
 ---
+
+(ex-6)=
 
 **6.** For the processes below, determine whether $x$ Granger causes $y$ and whether $y$ Granger causes $x$.
 
@@ -144,6 +161,8 @@ $$
 
 ---
 
+(ex-7)=
+
 **7.** Consider the simple Keynesian macroeconomic model
 
 $$
@@ -159,6 +178,8 @@ B. Determine whether $c$ Granger causes $Y$ and whether $Y$ Granger causes $c$. 
 C. Is the consumption function a projection (regression) equation?
 
 ---
+
+(ex-8)=
 
 **8.** Consider a $(y,x)$ process that has a Wold moving average representation
 
@@ -177,6 +198,8 @@ C. Find the coefficient generating function for the projection of $x$ on the ent
 D. Obtain a different Wold moving average representation for the $(y, x)$ process. (*Hint*: choose one white noise process as $\eta_{1t} \equiv \epsilon_t + k u_t$ and choose the other as $\eta_{2t}$, the error in the projection of $\epsilon_t$ on $\epsilon_t + ku_t$: $\epsilon_t = \rho(ku_t + \epsilon_t) + \eta_{2t}$ is a least squares disturbance.)
 
 ---
+
+(ex-9)=
 
 **9.** Consider Lucas's aggregate supply curve
 
@@ -204,6 +227,8 @@ where $P[\xi_t|\Omega_{t-1}]=0$. Prove that $p$ Granger causes $y$ by calculatin
 
 ---
 
+(ex-10)=
+
 **10.** Suppose that $y_t$ fails to Granger cause $x_t$ where both $y$ and $x$ are seasonally unadjusted processes. Suppose that an investigator studies seasonally adjusted processes $y_t^a$ and $x_t^a$ (see Sims, 1974):
 
 $$
@@ -215,6 +240,8 @@ where $f(L)$ and $g(L)$ are each finite-order two-sided, symmetric ($f_j = f_{-j
 Prove that if $f(L) \neq g(L)$, then $y_t^a$ in general Granger causes $x_t^a$. (*Hint*: first calculate the coefficient generating function for the projection of $y_t$ on the $x$ process, then calculate the coefficient generating function for the projection of $y_t^a$ on the $x_t^a$ process.)
 
 ---
+
+(ex-11)=
 
 **11.** In a recent article, a macroeconomist reported a regression of the log of the price level ($p_t$) on current and past values of the log of the money supply ($m_t$):
 
@@ -241,6 +268,8 @@ $$
 Derive a formula giving the $h(L) = \sum_{j=0}^\infty h_jL^j$ as a function of $\alpha$ and $d(L)$. Is the macroeconomist correct in his interpretation of the implications of classical theory?
 
 ---
+
+(ex-12)=
 
 **12.** Let the portfolio balance schedule be Cagan's
 
@@ -281,6 +310,8 @@ $$
 where $\xi_t$ is random? If not, use your formula for the projection equation to determine the biases that would emerge from mistakenly regarding Cagan's equation as a projection equation.
 
 ---
+
+(ex-13)=
 
 **13.** *Depreciation, Gestation, and Delivery Lags.* Consider a firm that is a perfect competitor in the market for its one output, and a monopsonist in the market for additions to the stock of the single factor of production that it uses, capital. The firm sells its output at the price $p$, which is constant over time. Output in period $t$, $q(t)$, is produced according to the production function
 
@@ -328,6 +359,8 @@ D. Argue that the characteristic polynomial that must be factored in solving pro
 
 ---
 
+(ex-14)=
+
 **14.** Let $(y_t, x_t)$ be a jointly covariance stationary process with mean of zero. Consider the projection equations
 
 $$
@@ -360,6 +393,8 @@ $$
 
 ---
 
+(ex-15)=
+
 **15.** Let $y_t$ be a mixed moving average, autoregressive process $y_t=(B(L)/A(L))\epsilon_t$, where $\epsilon_t$ is a white noise with unit variance, $B(L) = \prod_{j=1}^m(1 - \lambda_jL)$, $|\lambda_j|<1$ for $j=1,\ldots,m$, $|\mu_k|<1$ for $k=1,\ldots,n$, and $m\leq n$. The autocovariance generating function for $y$ is $g_y(z) = B(z)B(z^{-1})/A(z)A(z^{-1})$. Use formula (25) to establish the formula
 
 $$
@@ -367,6 +402,8 @@ c_y(\tau) = \sum_{s=1}^n \frac{\lambda_s^{n+|\tau|-m-1}\prod_{j=1}^m(1 - \mu_j\l
 $$
 
 ---
+
+(ex-16)=
 
 **16.** Let $b(L)$ be the polynomial in the lag operator $b(L)=(1 + \mu L)/(1-\lambda L)=\sum_{j=-\infty}^{\infty} b_jL^j$ where $|\lambda| < 1$. Use formula (25) to establish that
 
@@ -380,9 +417,13 @@ $$
 
 ---
 
+(ex-17)=
+
 **17.** Consider the generating function of the second-order Solow-Pascal lag distribution $w(z) = 1/(1 - Az)^2$, $|A|< 1$. Use formulas (23) and (25) to evaluate the coefficients of the lag distribution. Compare your results with equation (31) of Chapter IX.
 
 ---
+
+(ex-18)=
 
 **18.** Let $x_t$ be a covariance stationary stochastic process with mean zero and covariogram
 
@@ -402,6 +443,8 @@ B. Use the method of Section 16 to find a Wold (fundamental) moving average repr
 
 **Three inverse optimal prediction problems.**
 
+(ex-19)=
+
 **19.** Suppose that $x_t$ is a stochastic process with Wold representation $x_t = c(L)\epsilon_t$, $\epsilon_t=x_t-P[x_t|x_{t-1},\ldots]$. Suppose that $x_t$ satisfies
 
 $$
@@ -411,6 +454,8 @@ $$
 Use the Wiener-Kolmogorov formula to prove that $c(L)$ must be $1/(1 - \rho L)$.
 
 ---
+
+(ex-20)=
 
 **20.** Suppose that $x_t$ is a stochastic process with Wold representation $x_t = c(L)\epsilon_t$, where $\epsilon_t=x_t - P[x_t|x_{t-1},\ldots]$. Suppose that $x_t$ is such that
 
@@ -426,6 +471,8 @@ $$
 
 ---
 
+(ex-21)=
+
 **21.** Suppose that $x_t$ is a stochastic process with Wold representation $x_t = c(L)\epsilon_t$, where $\epsilon_t=x_t - P[x_t|x_{t-1},\ldots]$. Suppose that $x_t$ is such that
 
 $$
@@ -435,6 +482,8 @@ $$
 for all $k \geq 1$ where $|\rho| < 1$. Use the Wiener-Kolmogorov formula to prove that $c(L)$ must be given by $c(L)=(c_0 + (c_1 - \rho c_0)L)/(1-\rho L)$.
 
 ---
+
+(ex-22)=
 
 **22.** *Seasonality.* Consider a firm that faces the following optimum problem: to maximize
 
@@ -484,6 +533,8 @@ subject to $n^a_{-1}$ given and the law of motion for $w_t^a$ implied by the aut
 
 ---
 
+(ex-23)=
+
 **23.** Consider a jointly covariance stationary, linearly indeterministic stochastic process $(y_t,x_t,X_t)$ with means of zero. The variable $y_t$ is determined as
 
 $$
@@ -532,6 +583,8 @@ I. Briefly describe an econometric strategy for estimating $\lambda$ and $\alpha
 
 ---
 
+(ex-24)=
+
 **24.** Let $x_t$ have the Wold representation $x_t=c(L)\epsilon_t$, $c(z)=\sum_{j=0}^\infty c_jz^j$, where $\epsilon_t = x_t - P[x_t|x_{t-1},\ldots]$. Assume that $x_t$ has an autoregressive representation so that $a(L)x_t = \epsilon_t$, where $a(L) = c(L)^{-1}$.
 
 Derive a formula for the $h_j$'s in
@@ -541,6 +594,8 @@ P_t\left[\sum_{j=0}^\infty \lambda^j x_{t+j+1}\Bigg|x_t,x_{t-1},\ldots\right]=\s
 $$
 
 ---
+
+(ex-25)=
 
 **25.** Assume that the first difference of a stochastic process $z_t$ is covariance stationary, purely linearly indeterministic, has mean zero and has Wold moving average representation
 
