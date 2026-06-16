@@ -346,3 +346,264 @@ $$
 = \frac{\lambda^2(1-\beta L) - \lambda\beta(1-\lambda L)}{1-\beta L}\,z_t
 = \frac{\lambda(\lambda-\beta)}{1-\beta L}\,z_t . \qquad\blacksquare
 $$
+
+---
+
+```{note}
+**Granger-causality criterion used in Exercises 6–10.** By Sims's theorem
+(chapter §27), "$P$ Granger-causes $Q$" if and only if the coefficient
+generating function of the projection of $P$ on the *entire* $Q$ process,
+$g_{PQ}(z)/g_Q(z)$, is **two-sided** (has nonzero coefficients on negative powers
+of $z$). If it is one-sided in nonnegative powers, $P$ fails to Granger-cause $Q$.
+Here $g_{PQ}(z)=\sum_k E[P_t Q_{t-k}]z^k$ and $g_{QP}(z)=g_{PQ}(z^{-1})$.
+```
+
+## Exercise 6
+
+[→ {ref}`Exercise 6 <ex-6>`]
+
+For each pair, form $b(z)=g_{yx}(z)/g_x(z)$ (projection of $y$ on the $x$ process;
+its two-sidedness tests "$y$ causes $x$") and $f(z)=g_{yx}(z^{-1})/g_y(z)$
+(projection of $x$ on the $y$ process; tests "$x$ causes $y$").
+
+**A.**
+
+$$
+b(z)=\frac{g_{yx}(z)}{g_x(z)}
+=\frac{\sigma_{\epsilon u}}{\sigma_\epsilon^2}(1-0.8z)(1+0.5z^{-1})(1-0.9z)(1-0.9z^{-1}),
+$$
+
+which contains $z^{-1}$ and $z^{-2}$ — **two-sided**, so **$y$ Granger-causes $x$**.
+
+$$
+f(z)=\frac{g_{yx}(z^{-1})}{g_y(z)}
+=\frac{\sigma_{\epsilon u}(1-0.8z^{-1})(1+0.5z)}{\sigma_u^2(1-0.8z)(1-0.8z^{-1})}
+=\frac{\sigma_{\epsilon u}}{\sigma_u^2}\frac{1+0.5z}{1-0.8z},
+$$
+
+one-sided in nonnegative powers — **$x$ does not Granger-cause $y$**. (This is the
+example of chapter §7.)
+
+**B.**
+
+$$
+b(z)=\frac{\sigma_{\epsilon u}(1+0.2z)(1+0.99z^{-1})}{\sigma_\epsilon^2(1+0.99z)(1+0.99z^{-1})}
+=\frac{\sigma_{\epsilon u}}{\sigma_\epsilon^2}\frac{1+0.2z}{1+0.99z},
+$$
+
+one-sided — **$y$ does not Granger-cause $x$**. Whereas
+
+$$
+f(z)=\frac{\sigma_{\epsilon u}(1+0.2z^{-1})(1+0.99z)}
+          {\sigma_u^2}(1-0.7z+0.3z^2)(1-0.7z^{-1}+0.3z^{-2})
+$$
+
+contains negative powers (from $1+0.2z^{-1}$ and $1-0.7z^{-1}+0.3z^{-2}$) —
+**two-sided, so $x$ Granger-causes $y$**.
+
+**C.**
+
+$$
+b(z)=\frac{\sigma_{\epsilon u}}{\sigma_\epsilon^2}\frac{1-0.7z}{1-0.8z},
+\qquad
+f(z)=\frac{\sigma_{\epsilon u}}{\sigma_u^2}\frac{1-0.8z}{1-0.7z},
+$$
+
+both one-sided in nonnegative powers (the $z^{-1}$ factors cancel against $g_x$,
+$g_y$). Hence **neither variable Granger-causes the other**. (All three parts
+confirmed numerically by inverse-FFT of $b(z)$, $f(z)$ and inspection of the
+negative-lag coefficients.) $\blacksquare$
+
+## Exercise 7
+
+[→ {ref}`Exercise 7 <ex-7>`]
+
+Write the consumption multiplier $A(L)\equiv(1-b(L))^{-1}$, one-sided in
+nonnegative powers by hypothesis. Substituting $c_t=b(L)Y_t+\epsilon_t$ into
+$Y_t=c_t+I_t$ gives the reduced forms
+
+$$
+Y_t = A(L)\,(\epsilon_t + I_t),
+\qquad
+c_t = Y_t - I_t = A(L)\epsilon_t + \big(A(L)-1\big)I_t ,
+$$
+
+with $\epsilon\perp I$ at all lags.
+
+**A.** The cross generating function of $Y$ with $I$ is $g_{YI}(z)=A(z)g_I(z)$
+(the $\epsilon$ part drops out because $\epsilon\perp I$). Hence the projection of
+$Y$ on the entire $I$ process has coefficient function
+
+$$
+\frac{g_{YI}(z)}{g_I(z)} = A(z),
+$$
+
+which is one-sided in nonnegative powers. **$Y$ does not Granger-cause $I$** — as
+expected, since $I$ is exogenous and the only extra information in past $Y$ is
+past $\epsilon$, which is orthogonal to $I$.
+
+**B.** Using $g_{cY}(z)=A(z)A(z^{-1})g_\epsilon+(A(z)-1)A(z^{-1})g_I$ and
+$g_Y(z)=A(z)A(z^{-1})(g_\epsilon+g_I)$, the projection of $c$ on the whole $Y$
+process is
+
+$$
+\frac{g_{cY}(z)}{g_Y(z)} = 1 - \frac{g_I(z)}{A(z)\,(g_\epsilon(z)+g_I(z))} ,
+$$
+
+which is **two-sided** (the factor $g_I/(g_\epsilon+g_I)$ is a two-sided spectral
+ratio), so **$c$ Granger-causes $Y$**. Symmetrically, the projection of $Y$ on the
+whole $c$ process, $g_{Yc}(z)/g_c(z)$, is also two-sided, so **$Y$ Granger-causes
+$c$**. Thus $c$ and $Y$ Granger-cause each other — the feedback inherent in the
+simultaneous consumption–income system. (Confirmed numerically for
+$b(L)=0.5L$, white $\epsilon$, $I$ an AR(1).)
+
+**C.** **No.** A projection (regression) equation requires the disturbance to be
+orthogonal to every regressor. Here $\epsilon_t$ is orthogonal to *lagged*
+$Y$'s, but the consumption function regresses on *current* income $Y_t$, and
+$Y_t=A(L)(\epsilon_t+I_t)$ contains $\epsilon_t$, so
+$E[\epsilon_t Y_t]=\sigma_\epsilon^2\neq 0$. The contemporaneous regressor is
+correlated with the disturbance, so $c_t=b(L)Y_t+\epsilon_t$ is a **structural
+(behavioral) equation**, not a least-squares projection; OLS on it would be
+inconsistent (simultaneity bias). $\blacksquare$
+
+## Exercise 8
+
+[→ {ref}`Exercise 8 <ex-8>`]
+
+The representation $y_t=a(L)\epsilon_t+ka(L)u_t$, $x_t=c(L)\epsilon_t$ has the
+generating functions ($\epsilon\perp u$, variances $\sigma_\epsilon^2,\sigma_u^2$):
+
+$$
+g_x = \sigma_\epsilon^2\, c(z)c(z^{-1}),\quad
+g_y = (\sigma_\epsilon^2+k^2\sigma_u^2)\,a(z)a(z^{-1}),\quad
+g_{yx} = \sigma_\epsilon^2\, a(z)c(z^{-1}).
+$$
+
+**A.** Projection of $y$ on $x$:
+
+$$
+\frac{g_{yx}(z)}{g_x(z)} = \frac{a(z)}{c(z)} ,
+$$
+
+one-sided (both $a$ and $c^{-1}$ are one-sided in nonnegative powers), so **$y$
+does not Granger-cause $x$**. Projection of $x$ on $y$:
+
+$$
+\frac{g_{yx}(z^{-1})}{g_y(z)}
+= \frac{\sigma_\epsilon^2}{\sigma_\epsilon^2+k^2\sigma_u^2}\,\frac{c(z)}{a(z)} ,
+$$
+
+also one-sided, so **$x$ does not Granger-cause $y$**. **Neither causes the
+other.** (The original representation is already lower-triangular — $x$ loads only
+on $\epsilon$ — which by Sims's theorem 1 means $y\not\Rightarrow x$; part D
+exhibits the rotated triangular form giving $x\not\Rightarrow y$.)
+
+**B.** The coefficient generating function of the projection of $y$ on the entire
+$x$ process is $\;b(z)=g_{yx}(z)/g_x(z)=a(z)/c(z)$, one-sided.
+
+**C.** The projection of $x$ on the entire $y$ process is
+$\;f(z)=g_{yx}(z^{-1})/g_y(z)=\dfrac{\sigma_\epsilon^2}{\sigma_\epsilon^2+k^2\sigma_u^2}\dfrac{c(z)}{a(z)}$,
+also one-sided.
+
+**D.** Following the hint, set $\eta_{1t}=\epsilon_t+ku_t$ and let $\eta_{2t}$ be
+the residual in projecting $\epsilon_t$ on $\eta_{1t}$,
+$\epsilon_t=\rho\,\eta_{1t}+\eta_{2t}$ with
+$\rho=\dfrac{E\epsilon_t\eta_{1t}}{E\eta_{1t}^2}=\dfrac{\sigma_\epsilon^2}{\sigma_\epsilon^2+k^2\sigma_u^2}$,
+so $\eta_1\perp\eta_2$. Then $y_t=a(L)(\epsilon_t+ku_t)=a(L)\eta_{1t}$ and
+$x_t=c(L)\epsilon_t=\rho\,c(L)\eta_{1t}+c(L)\eta_{2t}$, i.e.
+
+$$
+\begin{bmatrix} y_t \\ x_t \end{bmatrix}
+= \begin{bmatrix} a(L) & 0 \\ \rho\,c(L) & c(L) \end{bmatrix}
+  \begin{bmatrix} \eta_{1t} \\ \eta_{2t} \end{bmatrix},
+\qquad
+\mathrm{var}(\eta_1)=\sigma_\epsilon^2+k^2\sigma_u^2,\ \
+\mathrm{var}(\eta_2)=\frac{\sigma_\epsilon^2 k^2\sigma_u^2}{\sigma_\epsilon^2+k^2\sigma_u^2}.
+$$
+
+This second Wold representation is lower-triangular with $y$ on top ($y$ loads
+only on $\eta_1$), confirming $x\not\Rightarrow y$. Together with the original
+representation (lower-triangular with $x$ on top), it shows the process admits
+*both* triangular factorizations — neither variable Granger-causes the other.
+$\blacksquare$
+
+## Exercise 9
+
+[→ {ref}`Exercise 9 <ex-9>`]
+
+Since $p_t=\sum_i w_i p_{t-i}+\epsilon_t$ with $P[\epsilon_t\mid\Omega_{t-1}]=0$,
+the price *surprise* is the innovation, $p_t-P[p_t\mid\Omega_{t-1}]=\epsilon_t$,
+and the supply curve becomes
+
+$$
+y_t = \lambda y_{t-1} + \gamma\epsilon_t + u_t .
+$$
+
+**A.** If $u_t$ is serially uncorrelated with $P[u_t\mid\Omega_{t-1}]=0$, then both
+$\epsilon_t$ and $u_t$ are orthogonal to $\Omega_{t-1}\supseteq\{y_{t-1},\dots,p_{t-1},\dots\}$.
+Projecting on past $y$'s and past $p$'s,
+
+$$
+P[y_t\mid y_{t-1},\dots,p_{t-1},\dots]
+= \lambda y_{t-1} + \gamma\,P[\epsilon_t\mid\cdot] + P[u_t\mid\cdot]
+= \lambda y_{t-1},
+$$
+
+which involves **only** $y_{t-1}$ — no past $p$'s. Hence past $p$ does not help
+predict $y$ given past $y$: **$p$ fails to Granger-cause $y$**. (Only the
+contemporaneous surprise $\epsilon_t$ enters, and it is unforecastable; this holds
+for *any* process $p$, not just the Markov one — the Lucas neutrality result.)
+
+**B.** Now $u_t=\rho u_{t-1}+\xi_t$ with $P[\xi_t\mid\Omega_{t-1}]=0$. Then
+
+$$
+y_t = \lambda y_{t-1} + \gamma\epsilon_t + \rho u_{t-1} + \xi_t .
+$$
+
+From the supply curve one period back, $u_{t-1}=y_{t-1}-\lambda y_{t-2}-\gamma\epsilon_{t-1}$,
+and $\epsilon_{t-1}=p_{t-1}-\sum_i w_i p_{t-1-i}$ is a function of past prices.
+Both lie in the past information set, while $\epsilon_t,\xi_t\perp$ past. Therefore
+
+$$
+P[y_t\mid y_{t-1},\dots,p_{t-1},\dots]
+= (\lambda+\rho)\,y_{t-1} - \rho\lambda\,y_{t-2}
+  - \rho\gamma\Big(p_{t-1}-\textstyle\sum_i w_i p_{t-1-i}\Big).
+$$
+
+The coefficients on past prices are nonzero whenever $\rho\gamma\neq0$, so **past
+$p$ helps predict $y$ given past $y$: $p$ Granger-causes $y$**. Serially
+correlated supply shocks destroy the neutrality of part A, because past prices now
+reveal the persistent component $u_{t-1}$ of the current shock. $\blacksquare$
+
+## Exercise 10
+
+[→ {ref}`Exercise 10 <ex-10>`]
+
+Because $y$ fails to Granger-cause $x$, by Sims's theorem the projection of $y$ on
+the whole $x$ process is one-sided: $b(z)=g_{yx}(z)/g_x(z)$ has nonnegative powers
+only. Filtering by $y_t^a=f(L)y_t$, $x_t^a=g(L)x_t$ transforms the generating
+functions to (formula {eq}`eq-47` style)
+
+$$
+g_{y^a x^a}(z)=f(z)g(z^{-1})\,g_{yx}(z),\qquad
+g_{x^a}(z)=g(z)g(z^{-1})\,g_x(z),
+$$
+
+so the projection of $y^a$ on the whole $x^a$ process has coefficient function
+
+$$
+b^a(z)=\frac{g_{y^a x^a}(z)}{g_{x^a}(z)}
+=\frac{f(z)}{g(z)}\,\frac{g_{yx}(z)}{g_x(z)}
+=\frac{f(z)}{g(z)}\,b(z).
+$$
+
+The filters are finite-order, two-sided and symmetric ($f_j=f_{-j}$,
+$g_j=g_{-j}$), so $g(z)$ has its zeros in reciprocal pairs and $1/g(z)$ — hence
+$f(z)/g(z)$ — is **two-sided** unless $f\equiv g$. Multiplying the one-sided
+$b(z)$ by the two-sided $f(z)/g(z)$ generally produces a $b^a(z)$ with nonzero
+negative-power coefficients. By Sims's theorem this means **$y^a$ Granger-causes
+$x^a$**. Only when the *same* filter is used on both series ($f=g$, so
+$f/g\equiv1$ and $b^a=b$) is the one-sidedness — and the absence of
+Granger-causality — preserved. This is the chapter's warning (§30) that using
+*different* seasonal-adjustment filters on the two series manufactures spurious
+Granger-causality. $\blacksquare$
