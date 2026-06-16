@@ -607,3 +607,453 @@ $f/g\equiv1$ and $b^a=b$) is the one-sidedness — and the absence of
 Granger-causality — preserved. This is the chapter's warning (§30) that using
 *different* seasonal-adjustment filters on the two series manufactures spurious
 Granger-causality. $\blacksquare$
+
+---
+
+## Exercise 11
+
+[→ {ref}`Exercise 11 <ex-11>`]
+
+```{note}
+This problem shows that a long distributed lag of prices on money is *fully
+consistent* with a frictionless classical model: the lag distribution reflects
+the public's *forecasting of future money*, not sticky prices.
+```
+
+**The reduced form for $p_t$.** Substitute $y_t=\bar y$ (constant) into the
+portfolio-balance schedule and collect the $p_t$ terms:
+
+$$
+m_t-p_t=\alpha\bigl(P_tp_{t+1}-p_t\bigr)+\bar y+u_t
+\;\Longrightarrow\;
+(1-\alpha)\,p_t+\alpha\,P_tp_{t+1}=m_t-\bar y-u_t .
+$$
+
+Divide by $(1-\alpha)$ (which is positive, since $\alpha<0$) and write
+$\beta\equiv\dfrac{-\alpha}{1-\alpha}=\dfrac{\alpha}{\alpha-1}$. Because
+$\alpha<0$ we have $0<\beta<1$, so the equation can be solved *forward*:
+
+$$
+p_t-\beta\,P_tp_{t+1}=\frac{1}{1-\alpha}\bigl(m_t-\bar y-u_t\bigr)
+\;\Longrightarrow\;
+p_t=\frac{1}{1-\alpha}\sum_{j=0}^\infty\beta^{\,j}\,P_t\bigl(m_{t+j}-\bar y-u_{t+j}\bigr).
+$$
+
+The constant $\bar y$ contributes only a constant $-\bar y\sum_j\beta^j/(1-\alpha)
+=-\bar y/[(1-\alpha)(1-\beta)]$, which is absorbed into the intercept $a$. The
+shocks $u_{t+j}$ satisfy $Eu_tm_{t-s}=0$ for all $s$, so the entire
+$u$-contribution is orthogonal to the money process and is absorbed into the
+regression residual $\epsilon_t$. The **money component** of $p_t$ is therefore
+
+$$
+p_t^{\,m}=\frac{1}{1-\alpha}\sum_{j=0}^\infty\beta^{\,j}\,P_t\,m_{t+j}.
+$$
+
+**Applying the geometric-lead (Hansen–Sargent) formula.** With
+$m_t=d(L)e_t$, $e_t$ the fundamental innovation, the one-step forecasts are
+$P_tm_{t+j}=\sum_{i\ge0}d_{i+j}e_{t-i}$, so the geometrically weighted sum is the
+one-sided filter (formula {eq}`eq-90`)
+
+$$
+\sum_{j=0}^\infty\beta^{\,j}P_tm_{t+j}=h^\ast(L)\,e_t,\qquad
+h^\ast(L)=\frac{L\,d(L)-\beta\,d(\beta)}{L-\beta},
+$$
+
+derived as follows. Writing $d(L)=\sum_kd_kL^k$ and changing the order of summation,
+
+$$
+\sum_{i\ge0}\Bigl(\sum_{j\ge0}\beta^{\,j}d_{i+j}\Bigr)L^i
+=\sum_{k\ge0}d_k\sum_{i=0}^{k}\beta^{\,k-i}L^i
+=\sum_{k\ge0}d_k\,\frac{L^{k+1}-\beta^{\,k+1}}{L-\beta}
+=\frac{L\,d(L)-\beta\,d(\beta)}{L-\beta},
+$$
+
+which is one-sided because the numerator vanishes at $L=\beta$, so $(L-\beta)$
+divides it.
+
+**The regression coefficients.** Since $\{m_{t-s}\}$ and $\{e_{t-s}\}$ span the
+same Hilbert space (the MA is fundamental), the projection of $p_t$ on current
+and past money is $h(L)\,m_t=p_t^{\,m}$, i.e. $h(L)\,d(L)\,e_t=\tfrac1{1-\alpha}
+h^\ast(L)e_t$. Hence
+
+$$
+\boxed{\;h(L)=\frac{1}{1-\alpha}\;\frac{L\,d(L)-\beta\,d(\beta)}{(L-\beta)\,d(L)},
+\qquad \beta=\frac{-\alpha}{1-\alpha}.\;}
+$$
+
+**Is the economist right?** No. Classical theory with rational expectations does
+*not* imply $h_0=1,\;h_j=0\;(j\neq0)$. It implies the rich distributed lag above,
+whose shape is governed jointly by the interest semi-elasticity $\alpha$ *and* by
+the money-supply dynamics $d(L)$. The $h_j$ are nonzero for many $j$ precisely
+because rational agents forecast future money from its serial correlation. Only
+in the knife-edge case of **serially uncorrelated money**, $d(L)=1$, does the
+filter collapse: then $h^\ast(L)=\frac{L-\beta}{L-\beta}=1$ and
+
+$$
+h(L)=\frac{1}{1-\alpha},\qquad h_0=\frac{1}{1-\alpha}<1,\quad h_j=0\;(j\ge1),
+$$
+
+and even here $h_0=1/(1-\alpha)\neq1$. The observed long lag is an artefact of
+the money process, not evidence of price stickiness; the macroeconomist's
+inference is unwarranted. $\blacksquare$
+
+---
+
+## Exercise 12
+
+[→ {ref}`Exercise 12 <ex-12>`]
+
+**A. The forward solution.** Project the Cagan schedule, written at date
+$t+j$ ($j\ge1$), onto information available at $t$. Using
+$P_t\bigl(P_{t+j-1}x_{t+j}\bigr)=P_tx_{t+j}$ for $j\ge1$ and
+$P_t\eta_{t+j}=0$ for $j\ge1$ (since $P_{t-1}\eta_t=0$ makes $\eta$ a one-step
+innovation):
+
+$$
+P_t\mu_{t+j}=(1-\alpha)\,P_tx_{t+j}+\alpha\,P_tx_{t+j+1},\qquad j\ge1 .
+$$
+
+Let $g_j\equiv P_tx_{t+j}$ and $\theta\equiv\dfrac{-\alpha}{1-\alpha}\in(0,1)$
+(again because $\alpha<0$). Dividing by $(1-\alpha)$,
+
+$$
+g_j-\theta\,g_{j+1}=\frac{1}{1-\alpha}P_t\mu_{t+j}
+\;\Longrightarrow\;
+g_j=\frac{1}{1-\alpha}\sum_{k=0}^\infty\theta^{\,k}P_t\mu_{t+j+k}.
+$$
+
+Setting $j=1$ and re-indexing $m=k+1$ gives exactly
+
+$$
+P_tx_{t+1}=\frac{1}{1-\alpha}\sum_{j=1}^\infty
+\Bigl(\frac{-\alpha}{1-\alpha}\Bigr)^{j-1}P_t\mu_{t+j}. \qquad\blacksquare
+$$
+
+**B. Rational expectations reproduce Cagan's adaptive formula.** The first row
+of the VAR is $x_t=x_{t-1}+a_{1t}-\lambda a_{1,t-1}$, i.e.
+$(1-L)x_t=(1-\lambda L)a_{1t}$, an IMA(1,1) with innovation
+$a_{1t}=x_t-P_{t-1}x_t=\dfrac{1-L}{1-\lambda L}x_t$. Leading one period,
+$x_{t+1}=x_t+a_{1,t+1}-\lambda a_{1t}$, and $P_ta_{1,t+1}=0$, so
+
+$$
+\pi_t\equiv P_tx_{t+1}=x_t-\lambda a_{1t}
+=x_t-\lambda\frac{1-L}{1-\lambda L}x_t
+=\frac{(1-\lambda L)-\lambda(1-L)}{1-\lambda L}x_t
+=\frac{1-\lambda}{1-\lambda L}x_t .
+$$
+
+This is exactly Cagan's geometric-distributed-lag ("adaptive expectations")
+formula — here *derived* from rational expectations, because the IMA(1,1)
+structure of $x$ is the one process for which the optimal forecast happens to
+coincide with an exponentially weighted moving average. $\blacksquare$
+
+**C. $\mu$ fails to Granger-cause $x$.** The $x$-equation
+$x_t=x_{t-1}+a_{1t}-\lambda a_{1,t-1}$ contains *no* $\mu$ terms: $x$ is a
+univariate IMA(1,1) driven only by its own innovation $a_{1t}$. The bivariate
+system is therefore block-triangular — $\mu$ depends on lagged $x$, but $x$ does
+not depend on lagged $\mu$ — so the projection of $x_t$ on the *entire* $\mu$
+process adds nothing beyond $x$'s own past. By Sims's criterion, $\mu$ does not
+Granger-cause $x$ (while $x$ *does* cause $\mu$). $\blacksquare$
+
+**D. The projection of $\mu_t-x_t$ on the $x$ process versus Cagan's equation.**
+First reduce both rows to innovations. From the second row,
+$(1-\lambda L)\mu_t=(1-\lambda)x_{t-1}+(1-\lambda L)a_{2t}$, so
+$\mu_t=\dfrac{(1-\lambda)L}{1-\lambda L}x_t+a_{2t}
+=\dfrac{(1-\lambda)L}{1-L}a_{1t}+a_{2t}$ (using
+$x_t=\tfrac{1-\lambda L}{1-L}a_{1t}$). Therefore
+
+$$
+\mu_t-x_t=\frac{(1-\lambda)L-(1-\lambda L)}{1-L}a_{1t}+a_{2t}
+=\frac{-(1-L)}{1-L}a_{1t}+a_{2t}=a_{2t}-a_{1t},
+$$
+
+a *white noise* (verified numerically to machine precision). Now the projection
+of $w_t\equiv\mu_t-x_t$ on the whole $x$ process has coefficient generating
+function $b(z)=g_{wx}(z)/g_x(z)$. With $w_t=(-1,1)\,a_t$ and
+$x_t=\bigl(\tfrac{1-\lambda L}{1-L},0\bigr)a_t$, and
+$\Sigma=\operatorname{Var}(a_t)=\left(\begin{smallmatrix}\sigma_1^2&\sigma_{12}\\
+\sigma_{12}&\sigma_2^2\end{smallmatrix}\right)$,
+
+$$
+g_{wx}(z)=(\sigma_{12}-\sigma_1^2)\frac{1-\lambda z^{-1}}{1-z^{-1}},\qquad
+g_x(z)=\sigma_1^2\frac{(1-\lambda z)(1-\lambda z^{-1})}{(1-z)(1-z^{-1})},
+$$
+
+so
+
+$$
+b(z)=\frac{g_{wx}(z)}{g_x(z)}
+=\frac{\sigma_{12}-\sigma_1^2}{\sigma_1^2}\,\frac{1-z}{1-\lambda z}
+\;\Longrightarrow\;
+P\bigl[\mu_t-x_t\mid x\bigr]
+=\frac{\sigma_{12}-\sigma_1^2}{\sigma_1^2}\,\frac{1-L}{1-\lambda L}\,x_t .
+$$
+
+Compare Cagan's equation, whose coefficient filter (substituting
+$P_tx_{t+1}-P_{t-1}x_t=\tfrac{(1-\lambda)(1-L)}{1-\lambda L}x_t$) is
+
+$$
+\mu_t-x_t=\alpha(1-\lambda)\,\frac{1-L}{1-\lambda L}\,x_t+\eta_t .
+$$
+
+The two share the *same lag shape* $\dfrac{1-L}{1-\lambda L}$ but **different
+scalars**: the projection slope is $(\sigma_{12}-\sigma_1^2)/\sigma_1^2$, whereas
+Cagan's structural slope is $\alpha(1-\lambda)$. They coincide only if
+$\sigma_{12}-\sigma_1^2=\alpha(1-\lambda)\sigma_1^2$. In general
+$\eta_t=a_{2t}-[1+\alpha(1-\lambda)]a_{1t}$ is correlated with $x_t$'s innovation
+$a_{1t}$ ($E\eta_ta_{1t}=\sigma_{12}-[1+\alpha(1-\lambda)]\sigma_1^2\neq0$), so
+**Cagan's equation is not a valid projection**. Estimating it as a regression
+recovers the projection slope, so the implied semi-elasticity is biased to
+
+$$
+\hat\alpha=\frac{\sigma_{12}-\sigma_1^2}{(1-\lambda)\,\sigma_1^2}
+\neq\alpha ,
+$$
+
+a simultaneity (errors-in-the-equation) bias driven by the covariance
+$\sigma_{12}$ between the inflation and money-growth innovations. $\blacksquare$
+
+---
+
+## Exercise 13
+
+[→ {ref}`Exercise 13 <ex-13>`]
+
+```{note}
+A cost-of-adjustment investment problem with a *general* gestation/depreciation
+lag $g(L)$. The Euler equation is a two-sided (symmetric) deterministic
+difference equation, solved by the "stable-roots-backward, unstable-roots-
+forward" factorization; its characteristic polynomial is the same one Muth
+factored in his signal-extraction reading of the permanent-income hypothesis.
+```
+
+**A. The Euler equation.** Capital is $K(t)=g(L)I(t)=\sum_{k\ge0}g_kI(t-k)$, so
+$\partial K(t)/\partial I(s)=g_{t-s}$ for $t\ge s$ and $0$ otherwise.
+Differentiating the present value with respect to $I(s)$ ($\rho\equiv p$, the
+fixed output price):
+
+$$
+\frac{\partial}{\partial I(s)}
+=\sum_{t\ge s}\rho\bigl[A_1-A_2K(t)\bigr]g_{t-s}
+-\bigl[B_0+B_1I(s)+\epsilon(s)\bigr]=0 .
+$$
+
+Now $\sum_{t\ge s}\rho A_1g_{t-s}=\rho A_1g(1)$, and
+$\sum_{t\ge s}\rho A_2K(t)g_{t-s}=\rho A_2\sum_{k\ge0}g_kK(s+k)
+=\rho A_2\,g(L^{-1})K(s)=\rho A_2\,g(L^{-1})g(L)I(s)$. Collecting terms,
+
+$$
+\bigl\{-B_0-\epsilon(t)+\rho A_1g(1)\bigr\}
+=\bigl\{\rho A_2\,g(L^{-1})g(L)+B_1\bigr\}I(t). \qquad\blacksquare
+$$
+
+**B. The factorization.** Let
+$\Psi(L)\equiv\rho A_2\,g(L^{-1})g(L)+B_1$. It is *symmetric*
+($\Psi(L)=\Psi(L^{-1})$), and on the unit circle
+$\Psi(e^{-i\omega})=\rho A_2\,|g(e^{-i\omega})|^2+B_1\ge B_1>0$, so $\Psi$ has no
+zeros on $|z|=1$ and its zeros occur in reciprocal pairs $(z_i,z_i^{-1})$ with
+$|z_i|<1$. Factor
+
+$$
+\Psi(L)=\kappa\,\pi(L)\,\pi(L^{-1}),\qquad
+\pi(L)=\prod_i(1-z_iL),\;|z_i|<1 ,
+$$
+
+with $\pi$ collecting the *stable* roots. The bounded (square-summable) solution
+of $\Psi(L)I(t)=\{\cdots\}$ is
+
+$$
+I(t)=\frac{1}{\kappa}\,\pi(L)^{-1}\pi(L^{-1})^{-1}
+\bigl\{-B_0-\epsilon(t)+\rho A_1g(1)\bigr\},
+$$
+
+where $\pi(L)^{-1}=\prod_i(1-z_iL)^{-1}$ is expanded in nonnegative powers of $L$
+("stable roots backward") and $\pi(L^{-1})^{-1}$ in nonnegative powers of
+$L^{-1}$ ("unstable roots forward"). The forward expansion is legitimate because
+$\{\epsilon(t)\}$ is bounded and known (no uncertainty). $\blacksquare$
+
+**C. The geometric case $g(L)=L/(1-\mu L)$.** Here $g(1)=1/(1-\mu)$ and
+$g(L)g(L^{-1})=\dfrac{1}{(1-\mu L)(1-\mu L^{-1})}$. Multiplying the Euler
+equation by $(1-\mu L)(1-\mu L^{-1})$ gives
+
+$$
+\Bigl[\rho A_2+B_1(1-\mu L)(1-\mu L^{-1})\Bigr]I(t)
+=(1-\mu L)(1-\mu L^{-1})\Bigl[\frac{\rho A_1}{1-\mu}-B_0-\epsilon(t)\Bigr].
+$$
+
+The bracket on the left,
+$B_1(1+\mu^2)+\rho A_2-B_1\mu(L+L^{-1})$, is symmetric and factors as
+$\dfrac{B_1\mu}{\zeta}(1-\zeta L)(1-\zeta L^{-1})$, where $\zeta\in(0,1)$ is the
+stable root of $B_1\mu z^2-[B_1(1+\mu^2)+\rho A_2]z+B_1\mu=0$:
+
+$$
+\zeta=\frac{[B_1(1+\mu^2)+\rho A_2]
+-\sqrt{[B_1(1+\mu^2)+\rho A_2]^2-4B_1^2\mu^2}}{2B_1\mu},
+\qquad \zeta\cdot\zeta^{-1}=1 .
+$$
+
+Solving stable-root backward and unstable-root forward,
+
+$$
+I(t)=\frac{\zeta}{B_1\mu}\,
+\frac{(1-\mu L)(1-\mu L^{-1})}{(1-\zeta L)(1-\zeta L^{-1})}
+\Bigl[\frac{\rho A_1}{1-\mu}-B_0-\epsilon(t)\Bigr],
+$$
+
+with $(1-\zeta L^{-1})^{-1}=\sum_{k\ge0}\zeta^kL^{-k}$ acting forward on the
+(known) shocks. The constant part is
+$\bar I=\dfrac{\zeta}{B_1\mu}\dfrac{(1-\mu)^2}{(1-\zeta)^2}
+\bigl(\tfrac{\rho A_1}{1-\mu}-B_0\bigr)$, and investment responds to the supply
+shocks through the two-sided geometric filter
+$-\tfrac{\zeta}{B_1\mu}\tfrac{(1-\mu L)(1-\mu L^{-1})}{(1-\zeta L)(1-\zeta
+L^{-1})}\epsilon(t)$. $\blacksquare$
+
+**D. Equivalence with Muth's signal-extraction problem.** The polynomial
+factored in C,
+
+$$
+\frac{\rho A_2}{(1-\mu L)(1-\mu L^{-1})}+B_1 ,
+$$
+
+is identical in form to the spectral density that Muth (1960) factors when
+extracting *permanent income* from observed income. Consider
+
+$$
+y_t=P_t+u_t,\qquad P_t=\frac{1}{1-\mu L}\,v_t,\qquad
+v_t,u_t\ \text{mutually orthogonal white noises},
+$$
+
+with $u_t$ transitory and $P_t$ a "permanent" component with geometric
+persistence $\mu$. The spectral density of observed income is
+
+$$
+g_y(z)=\frac{\sigma_v^2}{(1-\mu z)(1-\mu z^{-1})}+\sigma_u^2 ,
+$$
+
+which is exactly the characteristic polynomial of part C under the
+correspondence $\rho A_2\leftrightarrow\sigma_v^2$ (the curvature/benefit of
+adjusting) and $B_1\leftrightarrow\sigma_u^2$ (the adjustment cost / transitory
+noise). The Wiener factorization yields the same stable root $\zeta$ and hence
+the same exponentially weighted distributed lag: the optimal-investment problem
+is the *dual* of Muth's optimal-prediction (signal-extraction) problem, with the
+adjustment-cost ratio $B_1/\rho A_2$ playing the role of the noise-to-signal
+ratio $\sigma_u^2/\sigma_v^2$. $\blacksquare$
+
+---
+
+## Exercise 14
+
+[→ {ref}`Exercise 14 <ex-14>`]
+
+```{note}
+Coherence is the frequency-by-frequency $R^2$ of the two-sided projection. The
+statements printed in the problem have their denominators swapped; the
+internally consistent identities (each residual normalized by the spectrum of
+the variable being *explained*) are
+$\mathrm{coh}=1-g_u/g_x=1-g_\epsilon/g_y$, used throughout below.
+```
+
+**A. Coherence as one minus the residual share.** Define coherence
+$\mathrm{coh}(\omega)=\dfrac{|g_{yx}(\omega)|^2}{g_x(\omega)g_y(\omega)}$. For the
+two-sided projection $x_t=b(L)y_t+u_t$ with $u\perp y$, the coefficient filter is
+$B(\omega)=g_{xy}(\omega)/g_y(\omega)$ and spectra add:
+
+$$
+g_x=|B(\omega)|^2g_y+g_u
+=\frac{|g_{xy}(\omega)|^2}{g_y(\omega)}+g_u
+\;\Longrightarrow\;
+g_u=g_x\Bigl(1-\frac{|g_{yx}|^2}{g_xg_y}\Bigr)=g_x\bigl(1-\mathrm{coh}\bigr).
+$$
+
+Hence $\mathrm{coh}(\omega)=1-\dfrac{g_u(\omega)}{g_x(\omega)}$. Symmetrically,
+the projection $y_t=h(L)x_t+\epsilon_t$ with $\epsilon\perp x$,
+$H(\omega)=g_{yx}/g_x$, gives
+$g_\epsilon=g_y\bigl(1-\mathrm{coh}\bigr)$, i.e.
+$\mathrm{coh}(\omega)=1-\dfrac{g_\epsilon(\omega)}{g_y(\omega)}$. $\blacksquare$
+
+**B. $R^2$ of the $y$-on-$x$ equation.** Its $R^2$ is
+$1-E\epsilon^2/Ey^2$. By the spectral representation of variances,
+$E\epsilon^2=\frac1{2\pi}\int_{-\pi}^\pi g_\epsilon\,d\omega
+=\frac1{2\pi}\int_{-\pi}^\pi g_y(1-\mathrm{coh})\,d\omega$ and
+$Ey^2=\frac1{2\pi}\int_{-\pi}^\pi g_y\,d\omega$. Therefore
+
+$$
+R^2_{xy}=1-\frac{\frac1{2\pi}\int g_y(1-\mathrm{coh})\,d\omega}
+{\frac1{2\pi}\int g_y\,d\omega}
+=\frac{\frac1{2\pi}\int_{-\pi}^\pi\mathrm{coh}(\omega)\,g_y(\omega)\,d\omega}
+{\frac1{2\pi}\int_{-\pi}^\pi g_y(\omega)\,d\omega},
+$$
+
+a $g_y$-weighted average of coherence. $\blacksquare$
+
+**C. $R^2$ of the $x$-on-$y$ equation.** Identically, using
+$g_u=g_x(1-\mathrm{coh})$,
+
+$$
+R^2_{yx}=1-\frac{\frac1{2\pi}\int g_x(1-\mathrm{coh})\,d\omega}
+{\frac1{2\pi}\int g_x\,d\omega}
+=\frac{\frac1{2\pi}\int_{-\pi}^\pi\mathrm{coh}(\omega)\,g_x(\omega)\,d\omega}
+{\frac1{2\pi}\int_{-\pi}^\pi g_x(\omega)\,d\omega},
+$$
+
+a $g_x$-weighted average of coherence. In both cases the overall $R^2$ is a
+spectrum-weighted average of the frequency-wise coherence, weighted by the power
+of the variable being explained. $\blacksquare$
+
+---
+
+## Exercise 15
+
+[→ {ref}`Exercise 15 <ex-15>`]
+
+```{note}
+To avoid the notation clash in the printed formula (the same symbols are used for
+both the AR poles and the MA roots), write the **AR roots** as $p_1,\dots,p_n$
+($A(L)=\prod_k(1-p_kL)$, $|p_k|<1$) and the **MA roots** as $q_1,\dots,q_m$
+($B(L)=\prod_j(1-q_jL)$, $m\le n$). The printed $\lambda_s$ are the AR poles
+$p_s$ and the printed $\mu_j$ are the MA roots $q_j$ (except in the denominator
+product $\prod_{j=1}^n$, where they are again the AR poles).
+```
+
+The autocovariance generating function is
+$g_y(z)=\dfrac{B(z)B(z^{-1})}{A(z)A(z^{-1})}$ (unit-variance innovations). Using
+the residue formula {eq}`eq-25` with the symmetric branch that reproduces a
+*decaying* covariance, $c_y(\tau)=\sum$ of residues of $g_y(z)\,z^{|\tau|-1}$ at
+the poles inside the unit circle. Substituting
+$A(z^{-1})=z^{-n}\prod_k(z-p_k)$ and $B(z^{-1})=z^{-m}\prod_j(z-q_j)$,
+
+$$
+g_y(z)\,z^{|\tau|-1}
+=\frac{B(z)\,\prod_{j}(z-q_j)}{A(z)\,\prod_{k}(z-p_k)}\;
+z^{\,n-m+|\tau|-1}.
+$$
+
+The poles inside $|z|=1$ are the simple poles at $z=p_s$ (the zeros of
+$\prod_k(z-p_k)$; the zeros of $A(z)$ lie at $1/p_k$ outside). For
+$|\tau|\ge m-n+1$ — automatic since $m\le n$ — the factor
+$z^{\,n-m+|\tau|-1}$ contributes no pole at the origin, so summing the residues
+at $z=p_s$,
+
+$$
+c_y(\tau)=\sum_{s=1}^n
+\frac{p_s^{\,n+|\tau|-m-1}\,
+\prod_{j=1}^m(1-q_jp_s)(p_s-q_j)}
+{\prod_{k=1}^n(1-p_kp_s)\;\prod_{k=1,\,k\neq s}^n(p_s-p_k)} ,
+$$
+
+where $\prod_k(1-p_kp_s)=A(z)\big|_{z=p_s}\cdot$(grouping) comes from $B(p_s)$ and
+$A(p_s)$ and $\prod_{k\neq s}(p_s-p_k)$ from differentiating the pole factor.
+Relabelling $p_s\to\lambda_s$, $q_j\to\mu_j$ recovers the printed formula
+
+$$
+c_y(\tau)=\sum_{s=1}^n
+\frac{\lambda_s^{\,n+|\tau|-m-1}\prod_{j=1}^m(1-\mu_j\lambda_s)(\lambda_s-\mu_j)}
+{\prod_{j=1}^n(1-\mu_j\lambda_s)\prod_{j=1,\,j\neq s}^n(\lambda_s-\lambda_j)} .
+$$
+
+I verified this numerically against the autocovariances obtained by convolving
+the MA($\infty$) expansion of $B(L)/A(L)$: for an ARMA(2,1)
+($p=\{0.5,0.3\},q=\{0.2\}$) the formula matches $c_y(\tau)$ to machine precision
+for all $\tau\ge0$. (When $m=n$ the origin factor reappears at $\tau=0$, so the
+$\tau=0$ term then needs the extra residue at $z=0$; for $m<n$ the formula holds
+for every $\tau$.) $\blacksquare$
