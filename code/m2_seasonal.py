@@ -74,5 +74,32 @@ def ar_spectrum(a, sigma2, omega):
     return sigma2 / np.abs(ar_polynomial(a, omega)) ** 2
 
 
+def lead_filter(a, lam=LAMBDA):
+    """Geometric-lead forecast filter b(L) (Hansen-Sargent formula (90)).
+
+    For the AR representation a(L) x_t = eps_t with
+    a(L) = 1 - sum_{k=1}^r a_k L^k, the projection
+    y_t = P_t sum_j lam^j x_{t+j} equals b(L) x_t, where
+        b_0 = a(lam)^{-1},
+        b_j = a(lam)^{-1} sum_{k=j+1}^r lam^{k-j} a_k,   j = 1..r-1.
+    Returns b_0..b_{r-1}.
+    """
+    r = len(a)
+    a_lam = 1 - sum(a[k - 1] * lam ** k for k in range(1, r + 1))
+    b = np.zeros(r)
+    b[0] = 1.0 / a_lam
+    for j in range(1, r):
+        b[j] = sum(lam ** (k - j) * a[k - 1] for k in range(j + 1, r + 1)) / a_lam
+    return b
+
+
+def transfer(a, b, omega):
+    """Transfer function from innovations to y_t: h(e^{-iw}) = B(e^{-iw})/A(e^{-iw})."""
+    j = np.arange(len(b))
+    B = (b[:, None] * np.exp(-1j * np.outer(j, omega))).sum(axis=0)
+    A = ar_polynomial(a, omega)
+    return B / A
+
+
 # Seasonal periods (months) for monthly data: harmonics of the annual cycle
 SEASONAL_PERIODS = [12, 6, 4, 3, 2.4, 2]
