@@ -1057,3 +1057,212 @@ the MA($\infty$) expansion of $B(L)/A(L)$: for an ARMA(2,1)
 for all $\tau\ge0$. (When $m=n$ the origin factor reappears at $\tau=0$, so the
 $\tau=0$ term then needs the extra residue at $z=0$; for $m<n$ the formula holds
 for every $\tau$.) $\blacksquare$
+
+---
+
+## Exercise 16
+
+[→ {ref}`Exercise 16 <ex-16>`]
+
+The coefficient $b_j$ is, by the inverse-$z$-transform formula {eq}`eq-25`, the
+residue at the origin of $b(z)\,z^{-j-1}$ — equivalently the coefficient of $z^j$
+in the Laurent expansion of $b(z)=\dfrac{1+\mu z}{1-\lambda z}$. The only finite
+pole of $b(z)$ is at $z=1/\lambda$, which lies **outside** the unit circle since
+$|\lambda|<1$; hence the expansion about $z=0$ converges on a disk reaching the
+unit circle and $b$ is one-sided.
+
+* **$j<0$.** In the branch $b(z)\,z^{-j-1}$ the factor $z^{-j-1}=z^{|j|-1}$ has a
+  nonnegative power (for $j\le-1$), so there is no pole at the origin, and the
+  only pole $z=1/\lambda$ is outside $\Gamma$. The sum of residues inside is
+  therefore $0$, so $b_j=0$.
+
+* **$j=0$.** $b(z)z^{-1}=\dfrac{1+\mu z}{z(1-\lambda z)}$ has a simple pole at
+  $z=0$ with residue $\dfrac{1+\mu\cdot0}{1-\lambda\cdot0}=1$, so $b_0=1$.
+
+* **$j\ge1$.** The residue at the origin of $b(z)z^{-j-1}$ equals the $z^j$
+  Taylor coefficient of $b(z)$. Expanding,
+
+  $$
+  \frac{1+\mu z}{1-\lambda z}=(1+\mu z)\sum_{k\ge0}\lambda^kz^k
+  =\sum_{k\ge0}\lambda^kz^k+\mu\sum_{k\ge0}\lambda^kz^{k+1},
+  $$
+
+  the coefficient of $z^j$ ($j\ge1$) is $\lambda^j+\mu\lambda^{j-1}$.
+
+Collecting,
+
+$$
+b_j=\begin{cases}0,&j<0,\\[2pt]1,&j=0,\\[2pt]
+\lambda^j+\mu\lambda^{j-1},&j\ge1.\end{cases}\qquad\blacksquare
+$$
+
+---
+
+## Exercise 17
+
+[→ {ref}`Exercise 17 <ex-17>`]
+
+The second-order Solow–Pascal generating function $w(z)=(1-Az)^{-2}$, $|A|<1$,
+has a single pole of order two at $z=1/A$ (outside $\Gamma$), so its coefficients
+$w_j$ are again one-sided and equal to the residue at the origin of
+$w(z)\,z^{-j-1}=\dfrac{z^{-j-1}}{(1-Az)^2}$. For $j\ge0$ this is a pole of order
+$j+1$; applying the residue formula {eq}`eq-23` with
+$\phi(z)=z^{j+1}\,w(z)z^{-j-1}=(1-Az)^{-2}$,
+
+$$
+w_j=\operatorname{res}_{z=0}=\frac{\phi^{(j)}(0)}{j!},\qquad
+\phi^{(j)}(z)=\frac{d^j}{dz^j}(1-Az)^{-2}=(j+1)!\,A^j(1-Az)^{-(j+2)} .
+$$
+
+Evaluating at $z=0$ and dividing by $j!$,
+
+$$
+w_j=\frac{(j+1)!\,A^j}{j!}=(j+1)A^j,\qquad j\ge0,\quad w_j=0\ (j<0).
+$$
+
+This is exactly the *second-order Pascal (Solow) lag distribution*: weights
+proportional to $(j+1)A^j$, which rise then decline — the characteristic
+"humped" shape. Comparing with equation (31) of Chapter IX, the lag weights
+coincide up to the normalizing constant $w(1)^{-1}=(1-A)^2$ that makes the
+weights sum to one: the normalized Solow lag is $(1-A)^2(j+1)A^j$. $\blacksquare$
+
+---
+
+## Exercise 18
+
+[→ {ref}`Exercise 18 <ex-18>`]
+
+```{note}
+The covariogram $c(0)=1.25,\;c(\pm1)=-0.5,\;c(|\tau|\ge2)=0$ truncates at lag
+one, so $x_t$ is a first-order moving average — exactly the case treated at the
+start of §16. The finite-order projection coefficients converge to the
+infinite-order autoregressive coefficients.
+```
+
+**B (done first, it organizes A). Wold representation by the method of §16.**
+A covariogram vanishing for $|\tau|\ge2$ is that of an MA(1), $x_t=(1+\theta
+L)\epsilon_t$, with $c(0)=\sigma^2(1+\theta^2)$, $c(1)=\sigma^2\theta$. Hence
+$\dfrac{c(1)}{c(0)}=\dfrac{\theta}{1+\theta^2}=-0.4$, i.e.
+$0.4\,\theta^2+\theta+0.4=0$, with roots $\theta=-0.5$ and $\theta=-2$. The
+**fundamental (invertible)** root is $\theta=-\tfrac12$, giving
+
+$$
+x_t=\Bigl(1-\tfrac12L\Bigr)\epsilon_t,\qquad
+\sigma^2=\frac{c(0)}{1+\theta^2}=\frac{1.25}{1.25}=1 .
+$$
+
+Inverting, $\epsilon_t=\dfrac{1}{1-\frac12L}\,x_t=\sum_{k\ge0}\bigl(\tfrac12\bigr)^k
+x_{t-k}$, so the autoregressive representation is
+
+$$
+x_t=-\sum_{j=1}^\infty\Bigl(\tfrac12\Bigr)^j x_{t-j}+\epsilon_t,
+\qquad A_j=-\Bigl(\tfrac12\Bigr)^j .
+$$
+
+**A. Finite-order projections.** Solving the Yule–Walker system
+$\Gamma_n A^n=\gamma_n$ (with $\Gamma_n$ the $n\times n$ Toeplitz covariance
+matrix and $\gamma_n=(c(1),\dots,c(n))'$) for $n=1,\dots,5$ gives:
+
+| $n$ | $A_1^n$ | $A_2^n$ | $A_3^n$ | $A_4^n$ | $A_5^n$ |
+|---|---|---|---|---|---|
+| 1 | $-0.40000$ | | | | |
+| 2 | $-0.47619$ | $-0.19048$ | | | |
+| 3 | $-0.49412$ | $-0.23529$ | $-0.09412$ | | |
+| 4 | $-0.49853$ | $-0.24633$ | $-0.11730$ | $-0.04692$ | |
+| 5 | $-0.49963$ | $-0.24908$ | $-0.12308$ | $-0.05861$ | $-0.02344$ |
+
+For each fixed $j$, $A_j^n$ increases (in magnitude) toward the limit
+$A_j=-(\tfrac12)^j$: $A_1^n\to-0.5$, $A_2^n\to-0.25$, $A_3^n\to-0.125$, …. So the
+finite-order coefficients **do** approach the infinite-order autoregressive
+coefficients of part B as $n\to\infty$, confirming
+$A_j^n\to A_j=-(\tfrac12)^j$.
+
+```python
+import numpy as np
+cov = lambda k: {0: 1.25, 1: -0.5}.get(abs(k), 0.0)
+for n in range(1, 6):
+    G = np.array([[cov(i - j) for j in range(n)] for i in range(n)])
+    g = np.array([cov(k) for k in range(1, n + 1)])
+    print(n, np.linalg.solve(G, g).round(5))
+# limit (Wold/AR):  A_j = -(1/2)**j
+```
+
+$\blacksquare$
+
+---
+
+## Exercise 19
+
+[→ {ref}`Exercise 19 <ex-19>`]
+
+By the Wiener–Kolmogorov one-step prediction formula (the $k=1$ case of
+{eq}`eq-61`–{eq}`eq-62`), with $x_t=c(L)\epsilon_t$ the Wold representation:
+projecting $x_{t+1}=\sum_{j\ge0}c_j\epsilon_{t+1-j}$ on
+$\{x_t,x_{t-1},\dots\}$ and using $P_t\epsilon_{t+1}=0$,
+
+$$
+P[x_{t+1}\mid x_t,\dots]=\sum_{j\ge0}c_{j+1}\epsilon_{t-j}
+=\frac{c(L)-c_0}{L}\,\epsilon_t .
+$$
+
+The hypothesis $P[x_{t+1}\mid x_t,\dots]=\rho x_t=\rho\,c(L)\epsilon_t$, matched
+coefficient-by-coefficient in the (linearly independent) innovations $\epsilon$,
+requires the generating-function identity
+
+$$
+\frac{c(L)-c_0}{L}=\rho\,c(L)
+\;\Longrightarrow\;
+c(L)-c_0=\rho L\,c(L)
+\;\Longrightarrow\;
+c(L)\,(1-\rho L)=c_0 .
+$$
+
+With the Wold normalization $c_0=1$,
+
+$$
+c(L)=\frac{1}{1-\rho L}. \qquad\blacksquare
+$$
+
+That is, the only Wold representation consistent with a geometrically decaying
+one-step forecast is the AR(1).
+
+---
+
+## Exercise 20
+
+[→ {ref}`Exercise 20 <ex-20>`]
+
+Project $x_{t+1}$ and $x_{t+2}$ on $\{x_t,x_{t-1},\dots\}$ using the Wold
+representation $x_t=c(L)\epsilon_t$ and $P_t\epsilon_{t+i}=0$ for $i\ge1$:
+
+$$
+P[x_{t+1}\mid x_t,\dots]=\frac{c(L)-c_0}{L}\,\epsilon_t,\qquad
+P[x_{t+2}\mid x_t,\dots]=\sum_{j\ge0}c_{j+2}\epsilon_{t-j}
+=\frac{c(L)-c_0-c_1L}{L^2}\,\epsilon_t .
+$$
+
+The hypothesis $P[x_{t+2}\mid x_t,\dots]=\rho\,P[x_{t+1}\mid x_t,\dots]$ gives, in
+generating-function form,
+
+$$
+\frac{c(L)-c_0-c_1L}{L^2}=\rho\,\frac{c(L)-c_0}{L} .
+$$
+
+Multiply by $L^2$ and collect the $c(L)$ terms:
+
+$$
+c(L)-c_0-c_1L=\rho L\bigl(c(L)-c_0\bigr)
+\;\Longrightarrow\;
+c(L)\,(1-\rho L)=c_0+(c_1-\rho c_0)L ,
+$$
+
+so
+
+$$
+c(L)=\frac{c_0+(c_1-\rho c_0)L}{1-\rho L}. \qquad\blacksquare
+$$
+
+(Exercise 21 extends the same argument: imposing
+$P[x_{t+k}\mid x_t,\dots]=\rho^k\,P[x_{t+1}\mid x_t,\dots]$ for *every* $k\ge1$
+adds no restriction beyond the $k=2$ case — the recursion $c_{j+1}=\rho c_j$ for
+$j\ge1$ is already implied — so $c(L)$ is the *same* ARMA(1,1) above.)
