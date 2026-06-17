@@ -86,7 +86,7 @@ C. Prove that if $g_x(e^{-i\omega})$ is relatively smooth across the seasonal an
 A. Prove that there exists a representation
 
 $$
-x_t = \sum_{j=0}^\infty c_ju_{t-j} + \theta_t
+x_t = \sum_{j=0}^\infty c_ju_{t+j} + \theta_t
 $$
 
 where $c_0=1$, $\sum c_j^2<\infty$, $Eu_t^2\geq0$, $Eu_tu_s=0$ for $t\neq s$ and $E\theta_tu_s=0$ for all $t$ and $s$; $\theta_t$ is a process that can be predicted arbitrarily well by a linear function of only future values of $x$; and $u_t = x_t - P[x_t|x_{t+1}, x_{t+2},\ldots]$.
