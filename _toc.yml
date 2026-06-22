@@ -2,6 +2,12 @@ format: jb-book
 root: intro
 
 parts:
+  - caption: "Chapter IX: Difference Equations and Lag Operators"
+    chapters:
+      - file: chapters/ch09_difference_equations
+  - caption: "Chapter X: Linear Least Squares Projections (Regressions)"
+    chapters:
+      - file: chapters/ch10_regressions
   - caption: "Chapter XI: Linear Time Series"
     chapters:
       - file: chapters/01_introduction
