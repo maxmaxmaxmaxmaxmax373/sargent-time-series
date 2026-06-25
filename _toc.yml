@@ -15,6 +15,7 @@ parts:
       - file: chapters/03_cross_covariogram
       - file: chapters/04_fourier_z_transforms
       - file: chapters/05_inverse_z_transform
+      - file: chapters/05a_uncertainty_principle
       - file: chapters/06_spectrum
       - file: chapters/07_cross_spectrum
       - file: chapters/08_leading_indicators
@@ -28,6 +29,7 @@ parts:
       - file: chapters/16_deriving_ma
       - file: chapters/17_wold_ma
       - file: chapters/18_wold_arma
+      - file: chapters/18a_partial_fractions
       - file: chapters/19_signal_extraction
       - file: chapters/20_geometric_leads
       - file: chapters/21_chain_rule
@@ -52,3 +54,6 @@ parts:
     chapters:
       - file: chapters/39_nonlinear_representation
       - file: chapters/40_nonlinear_lab
+  - caption: "Moving Spectra: Complex Demodulation"
+    chapters:
+      - file: chapters/41_comp_demod
