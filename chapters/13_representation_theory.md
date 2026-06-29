@@ -8,7 +8,7 @@ $$
 
 In this section we reverse this procedure and start by assuming that we have a covariance stationary process $x_t$, with covariogram $c(\tau)$. We then show that associated with every such process $\{x_t\}$ is a white-noise process $\{\epsilon_t\}$ that is its fundamental building block. One purpose of this construction is to convey the sense in which the models we have been studying are quite general ones for covariance stationary processes.
 
-Suppose that we have a covariance stationary stochastic process \xt, with covariogram $c(\tau)$ and mean zero. We think of forming a sequence of linear least squares projections of $x_t$, against a sequence of expanding sets of past $x$'s, $\{x_{t-1}, x_{t-2}, \ldots, x_{t-n}\}$:
+Suppose that we have a covariance stationary stochastic process \xt, with covariogram $c(\tau)$ and mean zero. We think of forming a sequence of linear least squares projections (the regressions of {doc}`Chapter X <ch10_regressions>`) of $x_t$, against a sequence of expanding sets of past $x$'s, $\{x_{t-1}, x_{t-2}, \ldots, x_{t-n}\}$:
 
 $$
 \hat{x}^n_t = \sum_{i=1}^n a_i^n x_{t-i} = P[x_t | x_{t-1}, \ldots , x_{t-n}] \qquad \text{or} \qquad x_t = \hat{x}_t^n + \epsilon_t^n
@@ -199,6 +199,152 @@ $$
 $$
 
 so the spectral density function of the deterministic part is zero except for the singular points $\omega = \pm \lambda_i,\quad i = 1,\ldots, n$, at which the spectrum has mass $\pi \sigma_i^2$. The spectral density thus has "spikes" at the points $\omega = \pm \lambda_i$[^fn-rep-9]
+
+## Computing the Wold Representation: Whittle's Spectral Factorization
+
+Wold's theorem is an *existence* result: it guarantees a fundamental moving-average
+representation $x_t = d(L)\epsilon_t$, with $d_0 = 1$ and innovation variance
+$\sigma^2 = E\epsilon_t^2$, but its proof does not tell us how to *compute* $d(L)$ and
+$\sigma^2$. When the process is summarized by its spectral density $g(e^{-i\omega})$, there
+is a direct and elegant construction, due to Whittle (1983, p. 26), that uses nothing more
+than the logarithm and the Fourier transform.
+
+Recall from {doc}`06_spectrum` that the spectral density of $x_t = d(L)\epsilon_t$ factors as
+
+```{math}
+:label: eq-wf-1
+g(e^{-i\omega}) = \sigma^2\, d(e^{-i\omega})\, d(e^{i\omega})
+                = \sigma^2\,\bigl|d(e^{-i\omega})\bigr|^2 .
+```
+
+The *fundamental* factor $d(z)$ is the one with $d_0 = 1$ that is analytic and nonzero inside
+the unit circle — equivalently, the factor whose inverse $d(L)^{-1}$ is one-sided in
+nonnegative powers of $L$, so that $\epsilon_t$ lies in the space spanned by current and past
+$x$'s. Whittle's problem is to recover this $d$ and this $\sigma^2$ from $g$ alone.
+
+**The cepstrum.** Because $d(z)$ has no zeros or poles in the closed unit disk and $d(0) = 1$,
+$\log d(z)$ is analytic there and vanishes at the origin; write its power series
+
+$$
+\log d(z) = \sum_{k=1}^{\infty}\gamma_k z^k .
+$$
+
+Taking logarithms of {eq}`eq-wf-1` turns the product into a sum,
+
+```{math}
+:label: eq-wf-2
+\log g(e^{-i\omega}) = \log\sigma^2
+   + \sum_{k=1}^{\infty}\gamma_k e^{-i\omega k}
+   + \sum_{k=1}^{\infty}\gamma_k e^{+i\omega k},
+```
+
+which is just the Fourier series of the real, even function $\log g$. Its Fourier
+coefficients,
+
+```{math}
+:label: eq-wf-3
+c_k = \frac{1}{2\pi}\int_{-\pi}^{\pi}\log g(e^{-i\omega})\,e^{i\omega k}\,d\omega ,
+```
+
+are called the **cepstrum** of the process, and reading off {eq}`eq-wf-2` shows that they
+deliver the factorization in three pieces:
+
+- $c_0 = \log\sigma^2$, the constant term, which gives the **Kolmogorov formula** for the
+  one-step-ahead prediction-error variance,
+  ```{math}
+  :label: eq-wf-4
+  \sigma^2 = \exp(c_0)
+           = \exp\!\Bigl[\tfrac{1}{2\pi}\textstyle\int_{-\pi}^{\pi}\log g(e^{-i\omega})\,d\omega\Bigr]
+  ```
+  the very formula noted in the footnote above;
+- $c_k = \gamma_k$ for $k \geq 1$, the coefficients of $\log d$; and $c_{-k} = c_k$ because
+  $\log g$ is real and even.
+
+Exponentiating the positive-power half of the cepstrum therefore reconstructs the kernel,
+
+```{math}
+:label: eq-wf-5
+d(z) = \exp\!\Bigl(\sum_{k=1}^{\infty} c_k z^k\Bigr).
+```
+
+Keeping only the *strictly positive* powers is an annihilation operation — it discards the
+constant and the negative powers — and it is exactly what makes the result the fundamental
+factor: $\log d(z) = \sum_{k\geq 1} c_k z^k$ is then analytic and one-sided in the disk, so
+$d(z)$ has no zeros or poles inside it. The construction selects the fundamental
+factorization automatically, with no need to find roots and sort them by the unit circle.
+
+**The algorithm.** On a grid of $N$ equally spaced frequencies $\omega_j = 2\pi j/N$:
+
+1. form $\log g(e^{-i\omega_j})$;
+2. inverse-Fourier-transform it to obtain the cepstral coefficients $c_k$;
+3. set $\sigma^2 = \exp(c_0)$;
+4. zero out $c_0$ and the negative half, keep $c_1,\dots,c_{N/2}$, and Fourier-transform back
+   to get $\log d$ on the grid;
+5. exponentiate to get $d(e^{-i\omega_j})$;
+6. inverse-Fourier-transform to read off the kernel $d_0, d_1, d_2, \dots$.
+
+Each step is one (inverse) FFT, so the whole factorization costs $O(N\log N)$. In Python:
+
+```python
+import numpy as np
+
+def whittle_factor(s):
+    """Whittle's spectral factorization (Whittle 1983, p. 26).
+
+    s : spectral density g(e^{-i omega}) sampled on omega_j = 2*pi*j/N.
+    Returns the fundamental Wold kernel d = [d_0, d_1, ...] (with d_0 == 1) and
+    the one-step-ahead prediction-error variance sigma2 = E eps_t^2.
+    """
+    N = s.size
+    cep = np.fft.ifft(np.log(s))         # cepstrum c_k (Fourier coeffs of log g)
+    sigma2 = np.exp(cep[0].real)         # Kolmogorov formula: sigma^2 = exp(c_0)
+    half = N // 2
+    p = np.zeros(N, dtype=complex)
+    p[1:half + 1] = cep[1:half + 1]      # keep strictly positive powers => log d
+    d = np.real(np.fft.ifft(np.exp(np.fft.fft(p))))
+    return d, sigma2
+```
+
+This is a direct transcription of Whittle's recipe (and of the MATLAB routine `factor.m` on
+which it is modeled): `log`, then `ifft`, then `fft`, `exp`, and `ifft` once more.
+
+**Example 1: it selects the fundamental factor.** Take the *non-invertible* first-order
+moving average whose spectral density is
+$g(e^{-i\omega}) = \bigl|1 + 2e^{-i\omega}\bigr|^2 = 5 + 4\cos\omega$. Because
+$\bigl|1 + 2e^{-i\omega}\bigr|^2 = 4\,\bigl|1 + \tfrac12 e^{-i\omega}\bigr|^2$, this is the same
+density as the *invertible* process $x_t = (1 + \tfrac12 L)\epsilon_t$ with $\sigma^2 = 4$ —
+the factorization worked by hand in {doc}`17_wold_ma`. Given only $g$, `whittle_factor`
+returns $d = (1,\ 0.5,\ 0,\ 0,\dots)$ and $\sigma^2 = 4$: it recovers the fundamental factor,
+whose zero lies outside the unit circle, and silently discards the equivalent
+non-invertible representation.
+
+**Example 2: a process with an infinite kernel.** For the second-order autoregression
+$x_t = 0.6\,x_{t-1} - 0.5\,x_{t-2} + \epsilon_t$ with $\sigma^2 = 2.5$, whose roots are
+complex, the spectral density has a peak away from the origin and the Wold kernel is an
+infinite, damped sinusoid. From the spectrum alone the method recovers $\sigma^2 = 2.5$ and a
+kernel $d = (1,\ 0.6,\ -0.14,\ -0.384,\dots)$ that reproduces the autoregression's impulse
+response to machine precision. Both examples are shown in the figure below.
+
+```{figure} ../figures/ch13_whittle_factor.png
+:name: fig-whittle
+:width: 100%
+:align: center
+
+**Figure.** Whittle's spectral factorization recovers the fundamental Wold kernel $d(L)$ and
+the innovation variance $\sigma^2$ from the spectral density alone, by way of the cepstrum.
+*Top:* the non-invertible MA(1) spectrum $\bigl|1 + 2e^{-i\omega}\bigr|^2$ (left); the
+recovered kernel (stems, right) lands on the fundamental factor $1 + \tfrac12 L$ (red $\times$),
+with $\sigma^2 = 4$. *Bottom:* an AR(2) with complex roots, whose spectrum peaks near
+$\omega \approx 2\pi/9$ (left); the recovered kernel (stems, right) reproduces the
+autoregression's damped-sinusoid impulse response (red $\times$), with $\sigma^2 = 2.5$.
+Generated by
+[`code/ch13_whittle_factor.py`](https://github.com/maxmaxmaxmaxmaxmax373/sargent-time-series/blob/main/code/ch13_whittle_factor.py).
+```
+
+The method is the computational complement to Wold's theorem: where the theorem asserts that
+a fundamental $d(L)$ and a variance $\sigma^2$ exist, Whittle's factorization computes them
+from the second moments, packaged as the spectral density, in a handful of Fourier
+transforms.
 
 [^fn-rep-1]: The $a_i^n$ will be unique only if there are no linear dependencies across the $x_{t-i}$. The projection of $x_t$ on the space spanned by $\,\{x_{t-1}, x_{t-2}, \ldots, x_{t-n}\}$ is unique even without that condition.
 

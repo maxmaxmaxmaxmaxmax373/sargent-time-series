@@ -419,7 +419,7 @@ $$
 
 (ex-17)=
 
-**17.** Consider the generating function of the second-order Solow-Pascal lag distribution $w(z) = 1/(1 - Az)^2$, $|A|< 1$. Use formulas (23) and (25) to evaluate the coefficients of the lag distribution. Compare your results with equation (31) of Chapter IX.
+**17.** Consider the generating function of the second-order Solow-Pascal lag distribution $w(z) = 1/(1 - Az)^2$, $|A|< 1$. Use formulas (23) and (25) to evaluate the coefficients of the lag distribution. Compare your results with equation (31) of {doc}`Chapter IX <ch09_difference_equations>`.
 
 ---
 

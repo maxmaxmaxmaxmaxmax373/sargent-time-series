@@ -48,6 +48,7 @@ parts:
       - file: chapters/34_aggregation
       - file: chapters/35_errors_variables
       - file: chapters/36_bubbles
+      - file: chapters/36a_interpreting_vars
       - file: chapters/37_exercises
       - file: chapters/38_exercise_solutions
   - caption: "A Nonlinear Postscript"

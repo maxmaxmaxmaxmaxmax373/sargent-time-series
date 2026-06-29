@@ -94,6 +94,13 @@ where $Eu_t\epsilon_s = 0$ for all $t,s$, and $d(L),C^{11}(L),C^{22}(L)$ are one
 
 Sims's work on money and income was important because it provided a valid framework for testing empirically some often-stated objections to interpreting St. Louis regressions as final form equations.
 
+A cautionary counterpoint to this innovation-accounting program appears in
+{doc}`A Difficulty in Interpreting Vector Autoregressions <36a_interpreting_vars>`: in a class
+of rational expectations models the white noise a vector autoregression recovers is *not* the
+white noise that is fundamental for the agents, so the impulse responses and variance
+decompositions computed from the autoregression can misrepresent how the economy responds to
+the surprises that actually move agents.
+
 [^fn-sims-1]: This is a version of H. Theil's "omitted variable theorem." See Theil (1971, pp. 548–550).
 
 [^fn-sims-2]: Unless $m_t$ is strictly exogenous with respect to the vector $z_t$ or, equivalently, the vector $z_t$ does not Granger cause $m_t$.

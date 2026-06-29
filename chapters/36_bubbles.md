@@ -30,7 +30,7 @@ y_t = \frac{1}{1-\lambda\rho}x_t + \left(\frac{1}{\lambda}\right)^t c_t
 
 That {eq}`eq-206` is a solution of {eq}`eq-203` can be verified directly.
 
-Three examples of martingales $c_t$ can usefully be given. A first is the constant $c_t = c$ for all $t$. This is the sort of deterministic bubble encountered in Chapter IX. A second is the one proposed by Blanchard and Watson, namely, the process
+Three examples of martingales $c_t$ can usefully be given. A first is the constant $c_t = c$ for all $t$. This is the sort of deterministic bubble encountered in {doc}`Chapter IX <ch09_difference_equations>`. A second is the one proposed by Blanchard and Watson, namely, the process
 
 $$
 c_{t+1} = \begin{cases}

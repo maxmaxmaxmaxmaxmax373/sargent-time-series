@@ -86,3 +86,5 @@ Hansen and Sargent (1990, p. 102) give a quick but equivalent method of finding 
 ```
 
 For example, suppose $x_t = (1 + 2 L)u_t$, where $\sigma_u^2 = 1$ and where $u_t$ is a white noise. Then application of {eq}`eq-75` gives the Wold moving average representation $x_t = (1 + (1/2)L)\epsilon_t$, with $\sigma_{\epsilon} = 2$, where $\epsilon_t$ is a fundamental white noise for $\{x_t\}$.
+
+The factorizations of this section locate the zeros of $g_x(z)$ and sort them by the unit circle by hand. When the process is summarized instead by its *spectral density*, the same fundamental factor $d(L)$ and innovation variance $\sigma_\epsilon^2$ can be recovered numerically, in a handful of FFTs, by **Whittle's spectral factorization** of {doc}`Representation Theory <13_representation_theory>`. Applied to the spectral density $g_x(e^{-i\omega}) = |1 + 2e^{-i\omega}|^2$ of the example just worked, Whittle's method returns exactly $d = (1, \tfrac12, 0, \dots)$ and $\sigma_\epsilon^2 = 4$ — selecting the fundamental factor automatically.

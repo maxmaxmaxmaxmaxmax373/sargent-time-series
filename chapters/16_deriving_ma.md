@@ -32,7 +32,7 @@ We call this an Euler Equation because the coefficient on $d_1^{-1}$ equals that
 \left(1 - \frac{c(0)}{c(1)}d_1 + d_1^2\right) = 0.
 ```
 
-We seek to solve this for values of $d_1$. The roots of {eq}`eq-65` come in a reciprocal pair. As in Chapter IX, let $\lambda$ be one root and $\lambda^{-1}$ be the other. Then we want to solve
+We seek to solve this for values of $d_1$. The roots of {eq}`eq-65` come in a reciprocal pair. As in {doc}`Chapter IX <ch09_difference_equations>`, let $\lambda$ be one root and $\lambda^{-1}$ be the other. Then we want to solve
 
 ```{math}
 :label: eq-65b
@@ -45,7 +45,7 @@ $$
 \lambda + \frac{1}{\lambda} = \frac{c(0)}{c(1)}.
 $$
 
-A version of Figure 4 of Chapter IX can be used to solve this equation graphically (see Figure 7). Since $|\lambda + 1/\lambda|\geq 2$, it follows that we must have $|c(0)/c(1)|\geq 2$, or $2|c(1)|\leq c(0)$ in order that there exist real values of $d_1$ that solve {eq}`eq-65`.[^fn-ma-1]
+A version of {doc}`Figure 4 of Chapter IX <ch09_difference_equations>` can be used to solve this equation graphically (see Figure 7). Since $|\lambda + 1/\lambda|\geq 2$, it follows that we must have $|c(0)/c(1)|\geq 2$, or $2|c(1)|\leq c(0)$ in order that there exist real values of $d_1$ that solve {eq}`eq-65`.[^fn-ma-1]
 
 ```{figure} ../figures/fig7_euler_factoring.png
 :name: fig-7

@@ -54,7 +54,7 @@ $$
 m_t = a_1 m_{t-1} + a_2 m_{t-2} + a_3 m_{t-3} + \epsilon_t
 $$
 
-Let us reconsider the supply-demand example of Chapter IX where $x_t$ is now a covariance stationary, indeterministic random process with mean zero and autoregressive representation $a(L)x_t = \epsilon_t$, where $\epsilon_t$ is a fundamental white noise for $x_t$. Our system is naturally modified to become
+Let us reconsider the supply-demand example of {doc}`Chapter IX <ch09_difference_equations>` where $x_t$ is now a covariance stationary, indeterministic random process with mean zero and autoregressive representation $a(L)x_t = \epsilon_t$, where $\epsilon_t$ is a fundamental white noise for $x_t$. Our system is naturally modified to become
 
 $$
 \begin{aligned}
@@ -65,7 +65,7 @@ Y_t &= C_t + I_t - I_{t-1},
 \end{aligned}
 $$
 
-where $Y_t$ is production, $C_t$ demand for consumption, and $I_t$ holdings of inventories. Substituting the first three equations into the fourth gives
+where $Y_t$ is production, $C_t$ demand for consumption, and $I_t$ holdings of inventories. (A related single-market rational expectations example, in which the suppliers' and demanders' Euler equations are solved separately to yield explicit *dynamic supply and demand curves*, appears in {doc}`A Difficulty in Interpreting Vector Autoregressions <36a_interpreting_vars>`.) Substituting the first three equations into the fourth gives
 
 ```{math}
 :label: eq-97

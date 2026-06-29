@@ -1122,7 +1122,7 @@ $$
 
 This is exactly the *second-order Pascal (Solow) lag distribution*: weights
 proportional to $(j+1)A^j$, which rise then decline — the characteristic
-"humped" shape. Comparing with equation (31) of Chapter IX, the lag weights
+"humped" shape. Comparing with equation (31) of {doc}`Chapter IX <ch09_difference_equations>`, the lag weights
 coincide up to the normalizing constant $w(1)^{-1}=(1-A)^2$ that makes the
 weights sum to one: the normalized Solow lag is $(1-A)^2(j+1)A^j$. $\blacksquare$
 

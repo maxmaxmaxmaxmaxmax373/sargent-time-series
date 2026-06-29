@@ -360,8 +360,8 @@ where $\lambda_1 = re^{i\omega}$ and $\lambda_2 = re^{-i\omega}$. According to {
 the covariogram displays damped (we require $r < 1$) oscillations with angular frequency
 $\omega$. A complete cycle occurs as $\omega k$ goes from zero ($k = 0$) to $2\pi$
 ($k = 2\pi/\omega$, if that is possible). The restrictions on $t_1$ and $t_2$ needed to
-deliver complex roots and so an oscillatory covariogram can be read directly from Figure 1
-of Chapter IX.
+deliver complex roots and so an oscillatory covariogram can be read directly from
+{doc}`Figure 1 of Chapter IX <ch09_difference_equations>`.
 
 Figure 1b displays a realization of a second-order process for values of $t_1$ and $t_2$
 for which the roots are complex. Notice the tendency of this series to cycle, but with a
